@@ -1,8 +1,0 @@
-apiVersion: v2
-name: fde-01-foundations
-description: Complaint-routing classifier API and UI (models baked into the image). Same security posture as the Kustomize base.
-type: application
-version: 1.0.0
-appVersion: "1.0.0"
-maintainers:
-  - name: Sunday Ayandele
