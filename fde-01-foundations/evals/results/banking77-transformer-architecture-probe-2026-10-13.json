@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-13",
+  "package_version": "1.0.0",
+  "model": "transformer-architecture-probe",
+  "what": "distilbert-base-uncased architecture, RANDOM weights: serving cost only, no quality",
+  "dataset": "banking77",
+  "dataset_version": "git:57ec275d8078",
+  "parameters": 67012685,
+  "max_length": 64,
+  "serving": {
+    "n": 300,
+    "p50_ms": 28.693,
+    "p95_ms": 38.595,
+    "mean_ms": 28.744,
+    "cpu_seconds_per_1k": 56.278,
+    "batch_size": 64,
+    "texts_per_second": 52.6,
+    "rss_mb": 1039.6,
+    "framework_rss_mb": 617.4,
+    "model_rss_mb": 394.5,
+    "size_on_disk_mb": 255.71,
+    "vcpu_second_usd_assumed": 2.4e-05,
+    "cost_per_1k_usd": 0.001351
+  },
+  "machine": "Linux x86_64, Python 3.13.16"
+}

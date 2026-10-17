@@ -1,0 +1,35 @@
+# End-to-end smoke checks run by scripts/smoke_test.py against a live service
+# (local process, Docker/Podman/Rancher Desktop, Kubernetes or cloud).
+# Works with any trained model: the checks assert the response shape, not a label.
+checks:
+  - name: liveness
+    path: /health/live
+    expect_keys: [status]
+  - name: readiness
+    path: /health/ready
+    expect_keys: [status, version, models]
+  - name: metrics exposed
+    path: /metrics/
+    expect_contains: http_requests_total
+  - name: web UI
+    path: /
+    expect_contains: Complaint router
+  - name: model list
+    path: /api/v1/models
+  - name: input validation
+    method: POST
+    path: /api/v1/predict
+    json: {text: ""}
+    expect_status: 422
+  - name: predict and route
+    exercise: true          # needs a trained model, which needs the learner exercises
+    method: POST
+    path: /api/v1/predict
+    json: {text: "My new card still has not arrived after two weeks"}
+    expect_keys: [model, label, confidence, route, top]
+  - name: batch predict
+    exercise: true
+    method: POST
+    path: /api/v1/predict/batch
+    json: {texts: ["I was charged twice", "How do I change my PIN?"]}
+    expect_keys: [count, auto, items]

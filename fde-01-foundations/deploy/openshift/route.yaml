@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: fde-01-foundations
+spec:
+  to:
+    kind: Service
+    name: fde-01-foundations
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

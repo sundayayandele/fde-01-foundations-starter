@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fde-01-foundations-config
+data:
+  SERVICE_NAME: fde-01-foundations
+  ENVIRONMENT: k8s
+  SERVE_MODEL: banking77/baseline
+  ROUTE_THRESHOLD: "0.5"
+  ROUTE_MARGIN: "0.1"
+  LOG_LEVEL: INFO

@@ -1,0 +1,52 @@
+replicaCount: 2
+
+image:
+  repository: fde-01-foundations
+  tag: local
+  pullPolicy: IfNotPresent
+
+service:
+  port: 80
+  targetPort: 8000
+
+config:
+  ENVIRONMENT: helm
+  SERVE_MODEL: banking77/baseline
+  ROUTE_THRESHOLD: "0.5"
+  ROUTE_MARGIN: "0.1"
+  LOG_LEVEL: INFO
+
+# Optional existing Secret for later phases (LLM API keys). This service needs none.
+existingSecret: ""
+
+resources:
+  requests: {cpu: 250m, memory: 384Mi}
+  limits: {cpu: "1", memory: 1Gi}
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
+
+ingress:
+  enabled: false
+  className: ""
+  host: ""
+
+# OpenShift: set route.enabled=true and leave podSecurityContext without runAsUser.
+route:
+  enabled: false
+
+podSecurityContext:
+  runAsNonRoot: true
+  seccompProfile: {type: RuntimeDefault}
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities: {drop: [ALL]}
