@@ -22,6 +22,8 @@ WORKDIR /app
 RUN useradd --uid 10001 --gid 0 --no-create-home --shell /usr/sbin/nologin app
 # CPU-only PyTorch: about 10x smaller than the default CUDA build.
 RUN pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.4"
+# The PyTorch index ships an old setuptools with known CVEs; take the patched one from PyPI.
+RUN pip install --upgrade "setuptools>=83"
 COPY --from=build /wheels /wheels
 RUN pip install /wheels/*.whl && rm -rf /wheels
 COPY app ./app
