@@ -1,0 +1,56 @@
+name: evals
+
+# Trains and evaluates the models on Banking77 (downloaded at run time, pinned and
+# checksummed) and uploads the reports. Weekly for baseline + MLP; run it by hand with
+# "transformer: true" to fine-tune DistilBERT on the runner's CPU (about 30-60 minutes)
+# and get the transformer's measured quality for the README results table.
+on:
+  schedule:
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+    inputs:
+      transformer:
+        description: "Also fine-tune DistilBERT (slow on CPU)"
+        type: boolean
+        default: false
+      epochs:
+        description: "Transformer epochs"
+        type: string
+        default: "4"
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    if: ${{ !endsWith(github.repository, '-starter') }}
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: make install
+      - run: make download
+      - name: Train baseline and MLP
+        run: make train
+      - name: Fine-tune DistilBERT
+        if: ${{ inputs.transformer }}
+        run: complaint-router train --dataset banking77 --model transformer --epochs ${{ inputs.epochs }}
+      - name: Evaluate every bundle
+        run: |
+          mkdir -p ci-results
+          for b in models/*/*/; do complaint-router evaluate --bundle $b --out ci-results; done
+          complaint-router compare ci-results/*.json --out ci-results/comparison.md
+          cat ci-results/comparison.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eval-results
+          path: ci-results/
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.transformer }}
+        with:
+          name: transformer-bundle
+          path: models/banking77/transformer/
+          retention-days: 7
