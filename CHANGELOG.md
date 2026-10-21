@@ -4,6 +4,15 @@ All notable changes. Versions follow semantic versioning; the starter repo is re
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-21
+
+Repository and CI fixes; no change to the system's behaviour.
+
+### Fixed
+- Restored the files dropped on the first upload: GitHub Actions workflows, `.gitignore`, `.dockerignore`, `.env.example` and the starter configuration.
+- Security workflow: `aquasecurity/trivy-action` pinned to the v0.36.0 commit (the `0.28.0` tag no longer resolves).
+- setuptools upgraded to 83+ in the image and the dependency audit; the PyTorch index ships 78.1.0 with CVE-2025-47273 and a vendored jaraco.context with CVE-2026-23949.
+
 ## [1.0.0] - 2026-10-13
 
 ### Added

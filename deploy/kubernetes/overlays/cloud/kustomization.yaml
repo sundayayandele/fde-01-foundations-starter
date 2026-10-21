@@ -8,7 +8,7 @@ resources:
 images:
   - name: fde-01-foundations
     newName: REGISTRY/fde-01-foundations
-    newTag: "1.0.0"
+    newTag: "1.1.0"
 patches:
   - target: {kind: Deployment, name: fde-01-foundations}
     patch: |-
