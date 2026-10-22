@@ -5,6 +5,8 @@
 
 # fde-01-foundations: complaint-routing classifier
 
+[![Open the starter in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/sundayayandele/fde-01-foundations-starter?quickstart=1)
+
 Phase 1 (weeks 5–10) of the **Forward Deployed ML Engineer: Zero-to-Hired** series. You build the system most ML engagements in a bank start with: read an incoming complaint or customer message, decide where it should go, and **send it to a person when the model is not sure**.
 
 **The system:** a typed, tested Python package and CLI (`complaint-router`) that trains and compares three model families on the same splits:
