@@ -19,7 +19,7 @@ Datasets are downloaded at run time into `data/` (git-ignored) and never committ
 
 | Field | Value |
 | --- | --- |
-| Source | US CFPB Consumer Complaint Database, ingested by [fde-00-programming](https://github.com/sundayayandele/fde-00-programming) or downloaded as the bulk CSV |
+| Source | US CFPB Consumer Complaint Database, ingested by fde-00-programming or downloaded as the bulk CSV |
 | Licence | US government open data; see fde-00's DATASETS for terms to verify |
 | Use here | `narrative` → `product` (or `issue`) |
 | Loaders | `cfpb-db:<DATABASE_URL>` reads fde-00's `complaints` table; `cfpb-csv:<path>` reads the bulk CSV |

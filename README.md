@@ -1,7 +1,8 @@
 > **Learner starter.** This repo is generated from the reference solution.
 > Work through `labs/` week by week and replace each `TODO` until `make exercises` is green
 > (`make test` stays green throughout).
-> Do not open the reference repo until you have tried each exercise yourself.
+> The reference solution unlocks on [itlearning.tech](https://itlearning.tech) once you have passed
+> this phase's exit check or capstone.
 
 # fde-01-foundations: complaint-routing classifier
 
@@ -17,7 +18,7 @@ Phase 1 (weeks 5–10) of the **Forward Deployed ML Engineer: Zero-to-Hired** se
 
 The winner is served by a FastAPI service with a small web UI. Every prediction comes with a **routing decision** (auto-route or human review) based on confidence and margin, and Prometheus metrics that show when traffic drifts. It runs on Docker Desktop, Podman Desktop, Rancher Desktop, local Kubernetes, OpenShift, AWS, Azure and GCP.
 
-Datasets: the CFPB complaints stored by [`fde-00-programming`](https://github.com/sundayayandele/fde-00-programming) (predict `product` or `issue` from the narrative) and **Banking77** (77 banking intents, CC BY 4.0), which is the public benchmark the results below are measured on.
+Datasets: the CFPB complaints stored by `fde-00-programming` (predict `product` or `issue` from the narrative) and **Banking77** (77 banking intents, CC BY 4.0), which is the public benchmark the results below are measured on.
 
 ```mermaid
 flowchart LR
@@ -109,7 +110,7 @@ monitoring/                Prometheus, alerts (human-review share, inference lat
 
 ## Reference and starter
 
-[`fde-01-foundations`](https://github.com/sundayayandele/fde-01-foundations) is the **reference** repo: complete code and measured results. [`fde-01-foundations-starter`](https://github.com/sundayayandele/fde-01-foundations-starter) is generated from it with `make starter` for learners. Each exercise becomes a `NotImplementedError("TODO ...")` stub, exercise tests are marked `@pytest.mark.exercise` (run them with `make exercises`), and the results table is blank for your own numbers.
+`fde-01-foundations` is the **reference** repo (private: learners download it from the course on [itlearning.tech](https://itlearning.tech) after passing this phase's exit check or capstone): complete code and measured results. [`fde-01-foundations-starter`](https://github.com/sundayayandele/fde-01-foundations-starter) is generated from it with `make starter` for learners. Each exercise becomes a `NotImplementedError("TODO ...")` stub, exercise tests are marked `@pytest.mark.exercise` (run them with `make exercises`), and the results table is blank for your own numbers.
 
 ## Licence
 
